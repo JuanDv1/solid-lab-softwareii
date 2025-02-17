@@ -15,7 +15,7 @@
                 <exec.mainClass>co.edu.unicauca.mycompany.projects.main.Main</exec.mainClass>
                 <exec.vmArgs></exec.vmArgs>
                 <exec.appArgs></exec.appArgs>
-                <exec.workingdir>D:\juand\Documentos\Sexto Semestre\Ingenieria de Software II\Principios SOLID\AcademicProjects</exec.workingdir>
+                <exec.workingdir></exec.workingdir>
             </properties>
         </action>
         <action>
@@ -34,7 +34,7 @@
                 <exec.mainClass>co.edu.unicauca.mycompany.projects.main.Main</exec.mainClass>
                 <exec.vmArgs>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
                 <exec.appArgs></exec.appArgs>
-                <exec.workingdir>D:\juand\Documentos\Sexto Semestre\Ingenieria de Software II\Principios SOLID\AcademicProjects</exec.workingdir>
+                <exec.workingdir></exec.workingdir>
             </properties>
         </action>
         <action>
@@ -52,7 +52,7 @@
                 <exec.mainClass>co.edu.unicauca.mycompany.projects.main.Main</exec.mainClass>
                 <exec.vmArgs></exec.vmArgs>
                 <exec.appArgs></exec.appArgs>
-                <exec.workingdir>D:\juand\Documentos\Sexto Semestre\Ingenieria de Software II\Principios SOLID\AcademicProjects</exec.workingdir>
+                <exec.workingdir></exec.workingdir>
             </properties>
         </action>
     </actions>
