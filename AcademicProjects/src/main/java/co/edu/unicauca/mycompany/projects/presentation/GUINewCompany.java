@@ -8,11 +8,14 @@ import co.edu.unicauca.mycompany.projects.infra.Messages;
 import co.edu.unicauca.mycompany.projects.domain.services.CompanyService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JFrame;
 
 /**
  *
- * @author Libardo, Julio
+ * @author Brayan Steven Gomes Lasso <brayangomes@unicauca.edu.co>
+ * @author Juan David Perdomo Ramos <juanperdomobp@unicauca.edu.co>
  */
 
 public class GUINewCompany extends javax.swing.JDialog {
@@ -53,8 +56,8 @@ public class GUINewCompany extends javax.swing.JDialog {
     txtNit.setText("");
     txtName.setText("");
     txtPhone.setText("");
-    jTextField4.setText(""); // Campo para la página web
-    jTextField6.setText(""); // Campo para el email
+    jTextField4.setText("");
+    txtEmail.setText("");
     txtPassword.setText("");
 
     // Restablecer el ComboBox de sector a su valor predeterminado
@@ -85,7 +88,7 @@ public class GUINewCompany extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         cboSector = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -148,7 +151,13 @@ public class GUINewCompany extends javax.swing.JDialog {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("*Email:");
         pnlCenter.add(jLabel7);
-        pnlCenter.add(jTextField6);
+
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmailKeyPressed(evt);
+            }
+        });
+        pnlCenter.add(txtEmail);
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("*Password:");
@@ -175,8 +184,39 @@ public class GUINewCompany extends javax.swing.JDialog {
         String pageWeb = jTextField4.getText().trim();
         
         Sector sector = Sector.valueOf(cboSector.getSelectedItem().toString());
-        String email = jTextField6.getText().trim();
+        String email = txtEmail.getText().trim();
         String password = txtPassword.getText().trim();
+
+        // Regular expression for email
+        String regExEmail = "^[A-Za-z0-9+_.-]+@(.+)\\.com$";
+
+        Pattern patternEmail = Pattern.compile(regExEmail);
+        
+        // Matcher for email
+        Matcher matcherEmail = patternEmail.matcher(email);
+        
+        // If Email is not valid, show message
+        if(!matcherEmail.matches()){
+            Messages.showMessageDialog("El email ingresado no es válido.", "Atención");
+            txtEmail.requestFocus();
+            return;
+        }
+        
+        // Regular expression for password
+        String regExPassword = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{6,}$";
+        
+        Pattern patternPass = Pattern.compile(regExPassword);
+        
+        // Matcher for password
+        Matcher matcherPass = patternPass.matcher(password);
+        
+        // If password is not valid, show message
+        if(!matcherPass.matches()){
+            Messages.showMessageDialog("La contraseña ingresada no es válida.", "Atención");
+            txtPassword.requestFocus();
+            return;
+        }
+        
         if (nit.equals("")){
             Messages.showMessageDialog("Debe agregar el Nit", "Atención");
             txtNit.requestFocus();
@@ -189,7 +229,7 @@ public class GUINewCompany extends javax.swing.JDialog {
         }
         if (email.equals("")){
             Messages.showMessageDialog("Debe agregar el Email", "Atención");
-            jTextField6.requestFocus();
+            txtEmail.requestFocus();
             return;
         }
         if (password.equals("")){
@@ -200,14 +240,12 @@ public class GUINewCompany extends javax.swing.JDialog {
         
         Company company = new Company(nit, name, phone, pageWeb, sector, email, password);
         try {
-        // Intentar guardar la compañía
         boolean saved = companyservice.saveCompany(company);
 
         // Mostrar mensaje al usuario
         if (saved) {
             Messages.showMessageDialog("Compañía guardada exitosamente", "Información");
 
-            // Limpiar los campos después de guardar
             clearFields();
             guiMenu.fillCompanies();
         } else {
@@ -220,6 +258,10 @@ public class GUINewCompany extends javax.swing.JDialog {
     }
         
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
+
+    }//GEN-LAST:event_txtEmailKeyPressed
 
 
 
@@ -238,9 +280,9 @@ public class GUINewCompany extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JPanel pnlCenter;
     private javax.swing.JPanel pnlSouth;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNit;
     private javax.swing.JTextField txtPassword;

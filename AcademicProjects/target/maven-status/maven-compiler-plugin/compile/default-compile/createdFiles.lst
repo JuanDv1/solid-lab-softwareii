@@ -9,6 +9,7 @@ co\edu\unicauca\mycompany\projects\presentation\GUINewCompany.class
 co\edu\unicauca\mycompany\projects\infra\Messages.class
 co\edu\unicauca\mycompany\projects\presentation\GUIMenu$2.class
 co\edu\unicauca\mycompany\projects\presentation\GUIMenu.class
+co\edu\unicauca\mycompany\projects\presentation\GUINewCompany$3.class
 co\edu\unicauca\mycompany\projects\access\CompanySqliteRepository.class
 co\edu\unicauca\mycompany\projects\access\CompanyArraysRepository.class
 co\edu\unicauca\mycompany\projects\access\ICompanyRepository.class
